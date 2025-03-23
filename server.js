@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-
+const cors = require('cors');
 const app = express();
 const port = 3004;
 const photosFolder = path.join(__dirname, 'photos');
-
+app.use(cors())
 app.get('/api/photos', (req, res) => {
     fs.readdir(photosFolder, (err, files) => {
         if (err) return res.status(500).json({ error: "Error reading directory" });
